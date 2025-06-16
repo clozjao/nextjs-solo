@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
+    "module": "commonjs",
     "esModuleInterop": true,
     "moduleResolution": "nodenext",
     "noImplicitReturns": true,
@@ -8,10 +8,12 @@
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2020",
+    "skipLibCheck": true, // 有時可以幫助解決型別宣告問題
+
   },
   "compileOnSave": true,
   "include": [
-    "src"
+    "src/**/&.ts"
   ]
 }
