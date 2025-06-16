@@ -2,5 +2,5 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  return <></>;
+  return <>it is home page</>;
 }
