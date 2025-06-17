@@ -3,19 +3,206 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-neutrals-base-white: #fdfdfd;
+  --color-neutrals-base-black: #131313;
+  --color-neutrals-900: #161616;
+  --color-neutrals-800: #232323;
+  --color-neutrals-700: #2e2e2e;
+  --color-neutrals-600: #4b4b4b;
+  --color-neutrals-500: #6d6d6d;
+  --color-neutrals-400: #9a9a9a;
+  --color-neutrals-300: #bbbbbb;
+  --color-neutrals-200: #e9e9e9;
+  --color-neutrals-100: #f2f2f2;
+  --color-base-white: #fdfdfd;
+  --color-green-300: #68c343;
+  --color-green-200: #92e571;
+  --color-green-100: #b5ff96;
+  --color-error-300: #c62828;
+  --color-error-200: #d32f2f;
+  --color-error-100: #ef5350;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face{
+  font-family: 'Rhodium Libre';
+  src: url('/fonts/RhodiumLibre-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer utilities{
+  .font-h1{
+    font-family: Noto Sans;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    letter-spacing: 0.672px;
+  }
+  .font-h2{
+    font-family: Noto Sans;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    letter-spacing: 0.56px;
+  }
+  .font-h3 {
+    font-family: Noto Sans;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    letter-spacing: 0.448px;
+  }
+  .font-h4 {
+    font-family: Noto Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    letter-spacing: 0.392px;
+  }
+  .font-h5 {
+    font-family: Noto Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    letter-spacing: 0.336px;
+  }
+  .font-h6 {
+    font-family: Noto Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    letter-spacing: 0.28px;
+  }
+  .font-body1 {
+    font-family: Noto Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0.224px;
+  }
+  .font-body1b {
+    font-family: Noto Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 0.224px;
+  }
+  .font-body1semibold {
+    font-family: Noto Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+    letter-spacing: 0.224px;
+  }
+  .font-body2 {
+    font-family: Noto Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0.196px;
+  }
+  .font-body2b {
+    font-family: Noto Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 0.196px;
+  }
+  .font-caption{
+    font-family: Noto Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0.168px;
+  }
+  .font-captionb{
+    font-family: Noto Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 0.168px;
+  }
+  .font-small{
+    font-family: Noto Sans;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0.154px;
+  }
+  .font-libre{
+    font-family: Rhodium Libre;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.bg-home{
+  background: url("/home-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* tailwind.config.js 或你的 CSS 文件 */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE 和 Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.svg-fill-white path {
+  fill: white !important;
+  stroke: none;
+}
+
+.svg-fill-black path {
+  fill: black !important;
+  stroke: none;
+}
+
+.custom-placeholder::placeholder{
+  color: #9a9a9a;
 }

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     },
     "target": "ES2017",
     "lib": [
@@ -31,6 +31,9 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    "**/*.ts", 
     "**/*.tsx"
   ],
   "exclude": [
