@@ -1,23 +1,17 @@
-import { sports } from "@/data/sports";
+// app/[sport]/page.tsx
+
 import ClientComponent from "./ClientComponent";
+import { sports } from "@/data/sports";
 
-type PageProps = {
-  params: {
-    sport: string;
-  };
-};
+// ❗暫時用 any 避免 TS 報錯
+export default async function SportPage({ params }: { params: any }) {
+  const sport = (params as { sport: string }).sport;
 
-export async function generateStaticParams() {
+  return <ClientComponent sport={sport} />;
+}
+
+export function generateStaticParams() {
   return sports.map((sport) => ({
     sport,
   }));
-}
-
-export default function SportPage({ params }: PageProps) {
-  return (
-    <div>
-      <h1>{params.sport}</h1>
-      <ClientComponent sport={params.sport} />
-    </div>
-  );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export default function Mask({
   firstState,
@@ -36,8 +36,8 @@ export default function Mask({
     <>
       {show && (
         <div
-          className={`absolute top-0 left-0 z-5 h-full w-screen bg-black transition-opacity duration-300 ${
-            fadeIn ? 'opacity-50' : 'opacity-0'
+          className={`absolute top-0 left-0 z-10 h-full w-screen bg-black transition-opacity duration-300 ${
+            fadeIn ? "opacity-50" : "opacity-0"
           }`}
           onClick={(e) => {
             e.stopPropagation();

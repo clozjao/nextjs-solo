@@ -17,7 +17,7 @@ export default function Order({
       <div>
         <div className="flex items-center justify-between px-3 py-4 xl:px-0">
           <div className="flex items-center gap-2">
-            <img src={Orders} alt="order icon" className="h-5 w-5" />
+            <Orders className="h-5 w-5" />
             <h2 className="text-base font-bold">Order</h2>
           </div>
           <span className="font-body1 text-neutrals-900">Balance 0</span>
@@ -35,7 +35,7 @@ export default function Order({
         </div>
 
         <div className="flex items-center gap-2">
-          <img src={Remove} alt="remove icon" className="h-5 w-5" />
+          <Remove className="h-5 w-5" />
           <button className="font-caption text-neutrals-900">Remove all</button>
         </div>
       </div>

@@ -1,22 +1,26 @@
-import { useState } from 'react';
-import Date from '@/assets/date.svg';
-import Order from '@/assets/order.svg';
-import Language from '@/assets/language.svg';
-import Rules from '@/assets/rules.svg';
-import { useDispatch } from 'react-redux';
-import type { AppDispatch } from '@/redux/store';
-import { setRulesOpen, setLangsOpen } from '@/redux/reducer/componentsReducer';
+import { useState } from "react";
+import Date from "@/assets/date.svg";
+import Order from "@/assets/order.svg";
+import Language from "@/assets/language.svg";
+import Rules from "@/assets/rules.svg";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/redux/store";
+import { setRulesOpen, setLangsOpen } from "@/redux/reducer/componentsReducer";
 
 export default function Burger() {
   const dispatch = useDispatch<AppDispatch>();
 
-  const [active, setActive] = useState('schedule');
+  const [active, setActive] = useState("schedule");
 
   const menuItems = [
-    { key: 'schedule', label: 'Schedule', icon: Date },
-    { key: 'orders', label: 'History', icon: Order },
-    { key: 'language', label: 'Language', icon: Language },
-    { key: 'rules', label: 'Rules', icon: Rules },
+    { key: "schedule", label: "Schedule", icon: <Date className="h-6 w-6" /> },
+    { key: "orders", label: "History", icon: <Order className="h-6 w-6" /> },
+    {
+      key: "language",
+      label: "Language",
+      icon: <Language className="h-6 w-6" />,
+    },
+    { key: "rules", label: "Rules", icon: <Rules className="h-6 w-6" /> },
   ];
 
   return (
@@ -47,14 +51,14 @@ export default function Burger() {
                 e.stopPropagation();
                 setActive(item.key);
                 switch (item.label) {
-                  case 'Schedule':
+                  case "Schedule":
                     break;
-                  case 'History':
+                  case "History":
                     break;
-                  case 'Language':
+                  case "Language":
                     dispatch(setLangsOpen(true));
                     break;
-                  case 'Rules':
+                  case "Rules":
                     dispatch(setRulesOpen(true));
                     break;
                   default:
@@ -63,11 +67,11 @@ export default function Burger() {
               }}
               className={`font-body1 flex w-full items-center gap-5 rounded-md px-4 py-3 transition-all ${
                 active === item.key
-                  ? 'text-neutrals-900 bg-neutrals-100 xl:bg-white'
-                  : 'text-neutrals-600 hover:bg-white/60'
+                  ? "text-neutrals-900 bg-neutrals-100 xl:bg-white"
+                  : "text-neutrals-600 hover:bg-white/60"
               }`}
             >
-              <img src={item.icon} alt={item.label} className="h-6 w-6" />
+              {item.icon}
               <span>{item.label}</span>
             </button>
           ))}

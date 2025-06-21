@@ -33,7 +33,6 @@ export default function ClientComponent({ sport }: { sport: string }) {
   useEffect(() => {
     const node = orderRef.current;
     if (!node) return;
-
     if (openOrder) {
       node.classList.remove("hidden"); // 先移除 hidden，讓它可見
       // 強制重繪一次以確保 transition 生效
@@ -129,7 +128,7 @@ export default function ClientComponent({ sport }: { sport: string }) {
             scrollDirection === "down"
               ? "h-[var(--app-height)]"
               : "h-[calc(var(--app-height)-106px)] xl:h-[calc(var(--app-height)-124px)]"
-          } w-[80%] touch-none duration-450 sm:w-[70%] xl:static xl:col-span-4 xl:block xl:w-full xl:py-5`}
+          } transition-transform w-[80%] touch-none duration-450 sm:w-[70%] xl:static xl:col-span-4 xl:block xl:w-full xl:py-5`}
         >
           <Order setOpenOrder={setOpenOrder} />
         </div>

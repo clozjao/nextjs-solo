@@ -17,7 +17,9 @@ export default function SportMenu() {
             <div
               key={sport}
               className="hover:bg-neutrals-200 flex flex-col items-center justify-between gap-2 rounded-[100px] px-4 py-2 duration-300 select-none sm:px-6 sm:py-3"
-              onClick={() => router.push(`/${sport}`)}
+              onClick={() => {
+                router.push(`/${sport}`);
+              }}
             >
               {sport === "soccer" && (
                 <Soccer className="h-[32px] w-[32px] sm:h-[40px] sm:w-[40px]" />
