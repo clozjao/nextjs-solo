@@ -33,15 +33,18 @@ export default function Nav({ sport }: { sport: string }) {
   // }
   return (
     <>
-      <div className="mt-10 mb-5 flex w-3/4 min-w-[200px] justify-center gap-3 sm:min-w-[400px]">
-        <Link href="/" className="bg-base-white flex rounded-[100px] p-2">
-          <div className="h-[25px] w-[25px] xl:h-[40px] xl:w-[40px]">
+      <div className="pt-10 pb-5 flex w-3/4 min-w-[200px] justify-center gap-3 sm:min-w-[400px]">
+        <Link
+          href="/"
+          className="bg-base-white flex rounded-[100px] p-2 shadow-lg"
+        >
+          <div className="h-[25px] w-[25px] xl:h-[40px] xl:w-[40px] ">
             <Home width="100%" height="100%" />
           </div>
         </Link>
         <div className=" overflow-x-auto overflow-y-hidden">
           <div
-            className="flex gap-3 scroll-smooth duration-450"
+            className="flex gap-3 scroll-smooth duration-450 shadow-sm"
             ref={containerRef}
           >
             {sports.map((item, index) => {

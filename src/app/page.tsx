@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <div className="bg-home w-full min-h-screen">
-        <div className="relative min-h-[var(--app-height)] select-none">
+        <div className="relative h-[var(--app-height)] select-none">
           <Header />
           <Welcome />
           <SportMenu />

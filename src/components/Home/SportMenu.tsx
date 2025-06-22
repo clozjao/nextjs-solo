@@ -11,7 +11,7 @@ export default function SportMenu() {
   const router = useRouter();
   return (
     <>
-      <div className="flex pb-16">
+      <div className="flex  ">
         <div className="bg-base-white scrollbar-hide mx-auto inline-flex max-w-[280px] overflow-auto rounded-[100px] p-4 sm:max-w-[584px] xl:max-w-none">
           {sports.map((sport) => (
             <div

@@ -5,6 +5,7 @@ import Burger from "@/components/SportPage/Burger/Burger";
 import Order from "@/components/SportPage/Order";
 import Main from "@/components/SportPage/Main";
 import Mask from "@/components/SportPage/Mask";
+import Next from "@/assets/next.svg";
 import QrCode from "@/components/SportPage/MainComponents/QrCode";
 import { useState, useRef, useEffect } from "react";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
@@ -25,10 +26,6 @@ export default function ClientComponent({ sport }: { sport: string }) {
   const language = useSelector(
     (state: RootState) => state.globalSettingReducer.language
   );
-
-  useEffect(() => {
-    // console.log({ language });
-  }, [language]);
 
   useEffect(() => {
     const node = orderRef.current;
@@ -59,15 +56,11 @@ export default function ClientComponent({ sport }: { sport: string }) {
   return (
     <div className="relative h-[var(--app-height)]">
       <div
-        className={`flex w-full items-center justify-between bg-white px-4 transition-[height] duration-300 sm:px-16 ${
+        className={`flex w-full items-center justify-between bg-neutral-200 px-4 transition-[height] duration-300 sm:px-16 ${
           scrollDirection === "down" ? "h-0" : "h-[106px] xl:h-[124px]"
         } `}
       >
-        <img
-          className="mt-10 mb-5 hidden h-[34px] w-auto xl:block xl:h-[47px]"
-          alt="logo"
-          src={"/logo.png"}
-        />
+        <Next className="mt-10 mb-5 hidden h-[34px] w-auto xl:block xl:h-[47px]" />
         <MenuIcon
           className="mt-10 mb-5 h-7 w-7 xl:hidden"
           onClick={(e) => {
