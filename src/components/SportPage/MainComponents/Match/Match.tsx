@@ -17,7 +17,7 @@ export default function Match({ match }: { match: Match }) {
             <div className="bg-neutrals-300 h-[142px] flex-1 sm:h-[226px]"></div>
             <div className="bg-neutrals-500 h-[142px] flex-1 sm:h-[226px]"></div>
           </div>
-          <div className="flex divide-x-1 divide-[#b1b1b1] rounded-b-lg border-x-1 border-b-1 border-[#b1b1b1]">
+          <div className="flex divide-x divide-x-1 divide-[#b1b1b1] rounded-b-lg border-x-1 border-b-1 border-[#b1b1b1] mt-4">
             {match.odds.map((item, index) => {
               return (
                 <div
