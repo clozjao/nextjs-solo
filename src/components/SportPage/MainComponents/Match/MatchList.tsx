@@ -4,7 +4,7 @@ import { matchesData } from "@/data/matchesData";
 
 export default function MatchList() {
   const [matchState, setMatchState] = useState("in-play");
-  const matchArr = ["in-play", "early", "next-24-hours", "result"];
+  const matchArr = ["in-play", "early", "next-24-hours"];
   const filterMatch = matchesData.filter(
     (item) => item.matchState === matchState
   );
@@ -37,7 +37,9 @@ export default function MatchList() {
               return <Match key={item.id} match={item} />;
             })
           ) : (
-            <div>No events.</div>
+            <div className="h-80 flex justify-center items-center">
+              No events.
+            </div>
           )}
         </div>
       </div>

@@ -81,7 +81,7 @@ export default function ClientComponent({ sport }: { sport: string }) {
         />
       </div>
       <div
-        className={`scrollbar-hide relative grid grid-cols-6 transition-[padding] gap-x-6 bg-neutral-100 px-4 sm:grid-cols-8 sm:px-16 xl:grid-cols-12 ${
+        className={`scrollbar-hide relative grid grid-cols-6 transition-[padding] gap-x-6 bg-neutral-100 px-4 sm:grid-cols-8 sm:px-16 xl:grid-cols-12 pb-5 ${
           openOrder || openLeftSideBar ? "overflow-hidden" : "overflow-auto"
         } ${
           scrollDirection === "down"
