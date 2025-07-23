@@ -54,10 +54,10 @@ export default function ClientComponent({ sport }: { sport: string }) {
   }, [openOrder]);
 
   return (
-    <div className="relative h-[var(--app-height)]">
+    <div className="relative h-[var(--app-height)] bg-neutral-100 top-0">
       <div
-        className={`flex w-full items-center justify-between bg-neutral-200 px-4 transition-[height] duration-300 sm:px-16 ${
-          scrollDirection === "down" ? "h-0" : "h-[106px] xl:h-[124px]"
+        className={`absolute top-0 flex w-full items-center justify-between bg-neutral-200 z-[11] px-4 transition-transform duration-300 sm:px-16 h-[106px] xl:h-[124px] ${
+          scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
         } `}
       >
         <Next className="mt-10 mb-5 hidden h-[34px] w-auto xl:block xl:h-[47px]" />
@@ -81,8 +81,12 @@ export default function ClientComponent({ sport }: { sport: string }) {
         />
       </div>
       <div
-        className={`scrollbar-hide relative grid grid-cols-6 gap-x-6 bg-neutral-100 px-4 sm:grid-cols-8 sm:px-16 xl:grid-cols-12 ${
+        className={`scrollbar-hide relative grid grid-cols-6 transition-[padding] gap-x-6 bg-neutral-100 px-4 sm:grid-cols-8 sm:px-16 xl:grid-cols-12 ${
           openOrder || openLeftSideBar ? "overflow-hidden" : "overflow-auto"
+        } ${
+          scrollDirection === "down"
+            ? "h-[var(--app-height)]"
+            : "pt-[124px] h-[var(--app-height)]"
         } `}
       >
         <Mask
@@ -93,35 +97,23 @@ export default function ClientComponent({ sport }: { sport: string }) {
         />
         <QrCode />
         <div
-          className={`absolute z-10 w-[80%] transform-gpu touch-none transition-transform duration-450 ease-in-out sm:w-[70%] xl:static xl:col-span-2 xl:w-full xl:pt-5 ${
+          className={`absolute z-20 w-[80%] transform-gpu touch-none transition-transform duration-450 ease-in-out sm:w-[70%] xl:static xl:col-span-2 xl:w-full xl:pt-5 ${
             openLeftSideBar
               ? "translate-x-0"
               : "-translate-x-full xl:translate-x-0"
-          } ${
-            scrollDirection === "down"
-              ? "h-[var(--app-height)]"
-              : "h-[calc(var(--app-height)-106px)] xl:h-[calc(var(--app-height)-124px)]"
-          }`}
+          } h-full`}
         >
           <Burger />
         </div>
         <div
-          className={`scrollbar-hide relative col-span-6 ${
-            scrollDirection === "down"
-              ? "h-[var(--app-height)]"
-              : "h-[calc(var(--app-height)-106px)] xl:h-[calc(var(--app-height)-124px)]"
-          } overflow-y-auto pt-5 sm:col-span-8 xl:col-span-6`}
+          className={`scrollbar-hide relative col-span-6 h-full overflow-y-auto pt-5 sm:col-span-8 xl:col-span-6`}
           ref={scrollRef}
         >
           <Main />
         </div>
         <div
           ref={orderRef}
-          className={`scrollbar-hide absolute top-0 right-0 z-10 hidden ${
-            scrollDirection === "down"
-              ? "h-[var(--app-height)]"
-              : "h-[calc(var(--app-height)-106px)] xl:h-[calc(var(--app-height)-124px)]"
-          } transition-transform w-[80%] touch-none duration-450 sm:w-[70%] xl:static xl:col-span-4 xl:block xl:w-full xl:py-5`}
+          className={`scrollbar-hide absolute top-0 right-0 z-20 hidden h-full transition-transform w-[80%] touch-none duration-450 sm:w-[70%] xl:static xl:col-span-4 xl:block xl:w-full xl:py-5`}
         >
           <Order setOpenOrder={setOpenOrder} />
         </div>

@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import matchReducer from '@/redux/reducer/matchReducer'
 import componentsReducer from '@/redux/reducer/componentsReducer';
 import globalSettingReducer from '@/redux/reducer/globalSettingReducer';
+import orderReducer from "@/redux/reducer/orderReducer";
 
 export const store = configureStore({
   reducer: {
     matchReducer,
     componentsReducer,
     globalSettingReducer,
+    orderReducer
   },
 })
 

@@ -2,7 +2,7 @@ import Orders from "@/assets/orders.svg";
 import Remove from "@/assets/remove.svg";
 import Delete from "@/assets/delete.svg";
 import type { AppDispatch } from "@/redux/store";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setQrCode } from "@/redux/reducer/matchReducer";
 
 export default function Order({
@@ -11,6 +11,7 @@ export default function Order({
   setOpenOrder: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const dispatch = useDispatch<AppDispatch>();
+  const orders = useSelector((state: any) => state.orderReducer.orders);
 
   return (
     <div className="h-full space-y-6 bg-white p-4 xl:rounded-xl">
@@ -30,7 +31,7 @@ export default function Order({
         <div className="font-body1b flex items-center gap-2">
           SINGLE
           <span className="bg-neutrals-900 font-body2 inline-block rounded-[100px] px-[7px] py-[1px] text-center text-white">
-            2
+            {orders.length}
           </span>
         </div>
 
@@ -41,7 +42,7 @@ export default function Order({
       </div>
 
       <div className="h-[calc(100%-220px)] space-y-4 overflow-y-auto">
-        {[1, 2, 3, 4, 5, 6].map((item) => (
+        {orders.map((item: any) => (
           <div key={item} className="space-y-4 rounded-lg border p-3">
             <div className="flex justify-between">
               <span className="font-body1b">over 2.75</span>

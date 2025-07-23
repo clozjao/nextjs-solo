@@ -14,6 +14,7 @@ export function useScrollDirection<T extends HTMLElement>(
 
     const handleScroll = () => {
       const currentScrollTop = el.scrollTop;
+      // console.log({ currentScrollTop, lastScrollTop })
       const diff = currentScrollTop - lastScrollTop;
 
       if (Math.abs(diff) > threshold) {
