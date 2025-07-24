@@ -1,8 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+interface orderType {
+  id: string;
+  matchName: string;
+  odds: string;
+  oddsType: string;
+}
 
 interface OrderState {
-  orders: [];
+  orders: orderType[];
 }
 
 const initialState: OrderState = {
@@ -13,7 +19,7 @@ const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    setOrders: (state, action: PayloadAction<[]>) => {
+    setOrders: (state, action: PayloadAction<orderType[]>) => {
       state.orders = action.payload;
     },
   },

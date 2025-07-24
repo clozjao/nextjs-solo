@@ -1,8 +1,9 @@
 import Orders from "@/assets/orders.svg";
 import Remove from "@/assets/remove.svg";
 import Delete from "@/assets/delete.svg";
-import type { AppDispatch } from "@/redux/store";
+import type { AppDispatch, RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
+
 import { setQrCode } from "@/redux/reducer/matchReducer";
 
 export default function Order({
@@ -11,7 +12,7 @@ export default function Order({
   setOpenOrder: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const dispatch = useDispatch<AppDispatch>();
-  const orders = useSelector((state: any) => state.orderReducer.orders);
+  const orders = useSelector((state: RootState) => state.orderReducer.orders);
 
   return (
     <div className="h-full space-y-6 bg-white p-4 xl:rounded-xl">
@@ -43,17 +44,15 @@ export default function Order({
 
       <div className="h-[calc(100%-220px)] space-y-4 overflow-y-auto">
         {orders.map((item: any) => (
-          <div key={item} className="space-y-4 rounded-lg border p-3">
+          <div key={item.id} className="space-y-4 rounded-lg border p-3">
             <div className="flex justify-between">
-              <span className="font-body1b">over 2.75</span>
+              <span className="font-body1b">{`${item.oddsType} ${item.odds}`}</span>
               <button className="rounded-[100px] border-1 p-1">
                 <Delete className="h-3 w-3" />
               </button>
             </div>
             <div className="space-y-2">
-              <div className="font-body2">
-                Tottenham Hotspur Vs Nottingham Forest
-              </div>
+              <div className="font-body2">{item.matchName}</div>
               <div className="font-caption text-neutrals-500">
                 Premier League
               </div>
