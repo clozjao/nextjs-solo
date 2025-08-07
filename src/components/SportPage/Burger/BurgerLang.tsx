@@ -39,7 +39,7 @@ export default function QrCode() {
     <>
       {show ? (
         <div
-          className={`fixed top-0 right-0 z-10 flex h-screen w-screen items-center justify-center`}
+          className={`fixed top-0 right-0 z-20 flex h-screen w-screen items-center justify-center`}
         >
           <Mask setFirstState={setOpenLang} firstState={openLang} />
           <div className="absolute z-20 flex w-[300px] flex-col items-center justify-center gap-8 rounded-[20px] bg-white p-7">

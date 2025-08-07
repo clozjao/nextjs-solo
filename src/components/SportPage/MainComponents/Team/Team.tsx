@@ -1,14 +1,16 @@
 import Right from "@/assets/right.svg";
 import { teams } from "@/data/teams";
+import { useTranslation } from "react-i18next";
 
 export default function Team() {
+  const { t } = useTranslation();
   return (
     <>
       <div className="space-y-4 rounded-lg bg-white px-3 py-4 sm:space-y-5 sm:px-5">
         <div className="flex justify-between py-2">
-          <div className="font-h5">Team</div>
+          <div className="font-h5">{t("sports.team")}</div>
           <div className="font-body2 text-neutrals-500 flex items-center justify-center gap-2 !tracking-[-0.5px]">
-            view all
+            {t("button.view-all")}
             <Right className="h-5 w-5" />
           </div>
         </div>

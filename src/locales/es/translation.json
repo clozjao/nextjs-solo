@@ -44,7 +44,8 @@
     "no-events": "Sin eventos",
     "home": "Equipo local",
     "away": "Equipo de fuera",
-    "draw": "Empate"
+    "draw": "Empate",
+    "team": "Equipo"
   },
   "order": {
     "order": "Pedido",

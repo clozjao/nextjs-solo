@@ -22,16 +22,18 @@ export default function LangUi() {
     <>
       <div className="group relative">
         <div
-          className="bg-base-white flex w-[160px] cursor-pointer items-center justify-center gap-2 rounded-[100px] p-2 select-none"
+          className="bg-base-white flex w-[160px] cursor-pointer items-center justify-between gap-2 rounded-[100px] p-2 select-none h-10"
           onClick={(e) => {
             e.stopPropagation();
             setOpenLang(!openLang);
           }}
         >
-          <Language />
-          <div className="font-body1">{langDisplay}</div>
+          <Language className="h-6 w-6" />
+          <div className="font-body1 text-nowrap">{langDisplay}</div>
           <Down
-            className={`transition-transform ${openLang ? "rotate-180" : ""}`}
+            className={`h-6 w-6 transition-transform ${
+              openLang ? "rotate-180" : ""
+            }`}
           />
         </div>
         <div

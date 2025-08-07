@@ -6,9 +6,11 @@ import Volleyball from "@/assets/volleyball.svg";
 import Rugby from "@/assets/rugby.svg";
 import { sports } from "@/data/sports";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 export default function SportMenu() {
   const router = useRouter();
+  const { t } = useTranslation();
   return (
     <>
       <div className="flex  ">
@@ -40,7 +42,7 @@ export default function SportMenu() {
                 <Rugby className="h-[32px] w-[32px] sm:h-[40px] sm:w-[40px]" />
               )}
               <div className="font-libre text-[16px] sm:text-[20px]">
-                {sport}
+                {t(`sports.${sport}`)}
               </div>
             </div>
           ))}

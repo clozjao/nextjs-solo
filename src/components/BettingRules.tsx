@@ -5,8 +5,10 @@ import Delete from "@/assets/delete.svg";
 import { useEffect, useState, useRef } from "react";
 import Down from "@/assets/down.svg";
 import parse from "html-react-parser";
+import { useTranslation } from "react-i18next";
 
 export default function BettingRules() {
+  const { t } = useTranslation();
   const [animateShow, setAnimateShow] = useState(false);
   const [openRuleIndex, setOpenRuleIndex] = useState<number | null>(null);
   const dispatch = useDispatch<AppDispatch>();
@@ -36,16 +38,17 @@ export default function BettingRules() {
       {rulesOpen ? (
         <>
           <div
-            className={`absolute top-0 left-0 z-10 transition-opacity duration-300 ${
+            className={`absolute top-0 left-0 z-20 transition-opacity duration-300 ${
               animateShow
                 ? "pointer-events-auto opacity-100"
                 : "pointer-events-none opacity-0"
             } h-full w-full bg-white p-6`}
           >
             <div className="font-body1b mb-5 flex w-full items-center justify-between">
-              BettingRules
+              {t("function.betting-rules")}
               <Delete
-                onClick={(e) => {
+                className="h-6 w-6"
+                onClick={(e: React.MouseEvent) => {
                   e.stopPropagation();
                   setAnimateShow(false);
                 }}
@@ -70,7 +73,7 @@ export default function BettingRules() {
                         <div className="flex items-center justify-between py-5">
                           {item.title}
                           <Down
-                            className={`transition-transform duration-300 ${
+                            className={`transition-transform duration-300 w-6 h-6 ${
                               openRuleIndex !== index ? "" : "rotate-180"
                             }`}
                           />

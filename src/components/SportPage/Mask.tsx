@@ -36,7 +36,7 @@ export default function Mask({
     <>
       {show && (
         <div
-          className={`absolute top-0 left-0 z-[12] h-full w-screen bg-black transition-opacity duration-300 ${
+          className={`absolute top-0 left-0 z-[15] h-full w-screen bg-black transition-opacity duration-300 ${
             fadeIn ? "opacity-50" : "opacity-0"
           }`}
           onClick={(e) => {

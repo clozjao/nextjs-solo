@@ -44,7 +44,8 @@
     "no-events": "Sem eventos",
     "home": "Time da casa",
     "away": "time visitante",
-    "draw": "Empate"
+    "draw": "Empate",
+    "team": "Equipe"
   },
   "order": {
     "order": "Pedido",

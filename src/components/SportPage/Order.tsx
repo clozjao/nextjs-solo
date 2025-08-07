@@ -3,6 +3,7 @@ import Remove from "@/assets/remove.svg";
 import Delete from "@/assets/delete.svg";
 import type { AppDispatch, RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { setQrCode } from "@/redux/reducer/matchReducer";
 
@@ -11,6 +12,7 @@ export default function Order({
 }: {
   setOpenOrder: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const orders = useSelector((state: RootState) => state.orderReducer.orders);
 
@@ -20,9 +22,9 @@ export default function Order({
         <div className="flex items-center justify-between px-3 py-4 xl:px-0">
           <div className="flex items-center gap-2">
             <Orders className="h-5 w-5" />
-            <h2 className="text-base font-bold">Order</h2>
+            <h2 className="text-base font-bold">{t("order.order")}</h2>
           </div>
-          <span className="font-body1 text-neutrals-900">Balance 0</span>
+          {/* <span className="font-body1 text-neutrals-900">Balance 0</span> */}
         </div>
 
         <hr className="h-[1px] border-none bg-gray-300" />
@@ -30,7 +32,7 @@ export default function Order({
 
       <div className="flex items-center justify-between font-semibold">
         <div className="font-body1b flex items-center gap-2">
-          SINGLE
+          {t("order.single")}
           <span className="bg-neutrals-900 font-body2 inline-block rounded-[100px] px-[7px] py-[1px] text-center text-white">
             {orders.length}
           </span>
@@ -38,7 +40,9 @@ export default function Order({
 
         <div className="flex items-center gap-2">
           <Remove className="h-5 w-5" />
-          <button className="font-caption text-neutrals-900">Remove all</button>
+          <button className="font-caption text-neutrals-900">
+            {t("button.delete")}
+          </button>
         </div>
       </div>
 
@@ -60,11 +64,11 @@ export default function Order({
 
             <div className="space-y-2">
               <div className="flex justify-between text-xs">
-                <span>Min Bet</span>
+                <span>{t("order.min-bet")}</span>
                 <span>0</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span>To win</span>
+                <span>{t("order.to-win")}</span>
                 <span>0</span>
               </div>
             </div>
@@ -75,13 +79,14 @@ export default function Order({
             />
 
             <div className="font-body2 flex items-center justify-between">
-              Over/Under Total <span className="font-h5">1.9(EU)</span>
+              Over/Under {t("order.total")}{" "}
+              <span className="font-h5">1.9(EU)</span>
             </div>
           </div>
         ))}
       </div>
       <div>
-        <div className="flex items-center gap-2 text-xs">
+        {/* <div className="flex items-center gap-2 text-xs">
           <input type="checkbox" id="accept" className="peer hidden" />
           <label
             htmlFor="accept"
@@ -90,7 +95,7 @@ export default function Order({
           <label htmlFor="accept" className="font-body2 select-none">
             Accept Any Odds Changes
           </label>
-        </div>
+        </div> */}
 
         <button
           className="font-body1 my-4 w-full rounded bg-black py-2 text-white hover:opacity-90"
@@ -100,7 +105,7 @@ export default function Order({
             setOpenOrder(false);
           }}
         >
-          Place Bet
+          {t("button.submit")}
         </button>
       </div>
     </div>

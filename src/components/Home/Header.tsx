@@ -19,7 +19,7 @@ export default function Header() {
           <Next className="w-[120px] xl:w-[180px]" />
           <div className="flex items-center gap-6">
             <Rule
-              className="cursor-pointer"
+              className="cursor-pointer w-6 h-6"
               onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                 e.stopPropagation();
                 dispatch(setRulesOpen(!rulesOpen));

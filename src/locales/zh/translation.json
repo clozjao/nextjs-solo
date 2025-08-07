@@ -44,7 +44,8 @@
     "no-events": "没有赛事",
     "home": "主队",
     "away": "客队",
-    "draw": "和局"
+    "draw": "和局",
+    "team": "队伍"
   },
   "order": {
     "order": "订单",

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { sports } from "@/data/sports";
 import Home from "@/assets/home.svg";
 import Soccer from "@/assets/soccer.svg";
@@ -8,9 +8,11 @@ import Baseball from "@/assets/baseball.svg";
 import Volleyball from "@/assets/volleyball.svg";
 import Rugby from "@/assets/rugby.svg";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function Nav({ sport }: { sport: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   // useEffect(() => {
   //   if (containerRef.current) {
@@ -56,7 +58,7 @@ export default function Nav({ sport }: { sport: string }) {
                     item === sport
                       ? "bg-neutrals-base-black px-5 py-2 text-white"
                       : "bg-base-white p-2"
-                  } font-body1semibold flex items-center gap-3 rounded-[100px] capitalize`}
+                  } font-body1semibold flex items-center gap-3 rounded-[100px] capitalize text-nowrap`}
                 >
                   {item === "soccer" && (
                     <Soccer
@@ -100,7 +102,7 @@ export default function Nav({ sport }: { sport: string }) {
                       } h-[25px] w-[25px] xl:h-[40px] xl:w-[40px]`}
                     />
                   )}
-                  {item === sport && item}
+                  {item === sport && t(`sports.${item}`)}
                 </Link>
               );
             })}

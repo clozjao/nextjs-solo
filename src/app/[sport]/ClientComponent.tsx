@@ -23,10 +23,6 @@ export default function ClientComponent({ sport }: { sport: string }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollDirection = useScrollDirection(scrollRef);
 
-  const language = useSelector(
-    (state: RootState) => state.globalSettingReducer.language
-  );
-
   useEffect(() => {
     const node = orderRef.current;
     if (!node) return;
@@ -97,13 +93,13 @@ export default function ClientComponent({ sport }: { sport: string }) {
         />
         <QrCode />
         <div
-          className={`absolute z-20 w-[80%] transform-gpu touch-none transition-transform duration-450 ease-in-out sm:w-[70%] xl:static xl:col-span-2 xl:w-full xl:pt-5 ${
+          className={`absolute z-[16] w-[80%] transform-gpu touch-none transition-transform duration-450 ease-in-out sm:w-[70%] xl:static xl:col-span-2 xl:w-full xl:pt-5 ${
             openLeftSideBar
               ? "translate-x-0"
               : "-translate-x-full xl:translate-x-0"
           } h-full`}
         >
-          <Burger />
+          <Burger setOpenLeftSideBar={setOpenLeftSideBar} />
         </div>
         <div
           className={`scrollbar-hide relative col-span-6 h-full overflow-y-auto pt-5 sm:col-span-8 xl:col-span-6`}
@@ -113,7 +109,7 @@ export default function ClientComponent({ sport }: { sport: string }) {
         </div>
         <div
           ref={orderRef}
-          className={`scrollbar-hide absolute top-0 right-0 z-20 hidden ${
+          className={`scrollbar-hide absolute top-0 right-0 z-[16] hidden ${
             scrollDirection === "down"
               ? "h-[var(--app-height)]"
               : "h-[var(--app-height)] xl:h-[calc(var(--app-height)-144px)]"

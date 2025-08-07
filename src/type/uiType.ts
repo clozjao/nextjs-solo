@@ -16,6 +16,12 @@ export interface Rule {
   slug: string;
 }
 
+export interface RulesResponse {
+  posts: {
+    nodes: Rule[];
+  };
+}
+
 export interface qrCodeType {
   qrCode: string;
   qrCodeOpen: boolean;

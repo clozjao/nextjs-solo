@@ -1,7 +1,10 @@
 import { useState } from "react";
 import SearchIcon from "@/assets/search.svg";
 
+import { useTranslation } from "react-i18next";
+
 export default function Search() {
+  const { t } = useTranslation();
   const [query, setQuery] = useState("");
   const handleSearch = () => {
     console.log(query);
@@ -15,7 +18,7 @@ export default function Search() {
         />
         <input
           type="text"
-          placeholder="Search"
+          placeholder={t("function.search")}
           className="text-neutrals-400 flex-grow bg-transparent outline-none"
           onChange={(e) => setQuery(e.target.value)}
         />

@@ -44,7 +44,8 @@
     "no-events": "No events",
     "home": "Home",
     "away": "Away",
-    "draw": "Draw"
+    "draw": "Draw",
+    "team": "Team"
   },
   "order": {
     "order": "Order",

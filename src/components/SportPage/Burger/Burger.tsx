@@ -1,20 +1,25 @@
 import { useState } from "react";
 import Date from "@/assets/date.svg";
-import Order from "@/assets/order.svg";
+// import Order from "@/assets/order.svg";
 import Language from "@/assets/language.svg";
 import Rules from "@/assets/rules.svg";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/redux/store";
 import { setRulesOpen, setLangsOpen } from "@/redux/reducer/componentsReducer";
+import { useTranslation } from "react-i18next";
 
-export default function Burger() {
+export default function Burger({
+  setOpenLeftSideBar,
+}: {
+  setOpenLeftSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
 
   const [active, setActive] = useState("schedule");
 
   const menuItems = [
     { key: "schedule", label: "Schedule", icon: <Date className="h-6 w-6" /> },
-    { key: "orders", label: "History", icon: <Order className="h-6 w-6" /> },
     {
       key: "language",
       label: "Language",
@@ -29,11 +34,11 @@ export default function Burger() {
         <div className="flex w-full items-center justify-between px-7 pb-4 xl:flex-col xl:items-start xl:justify-start xl:px-0 xl:pb-5">
           <div className="flex items-center gap-2 xl:mb-5">
             <div className="h-8 w-8 rounded-full bg-gray-400" />
-            <span className="font-body1 text-black">My bets</span>
+            <span className="font-body1 text-black">{t("user")}</span>
           </div>
-          <div className="text-lg font-bold text-black xl:text-2xl">
+          {/* <div className="text-lg font-bold text-black xl:text-2xl">
             11,200 <span className="text-xs font-normal">EU</span>
-          </div>
+          </div> */}
         </div>
         <hr className="h-[1px] w-full border-none bg-gray-300 xl:hidden" />
       </div>
@@ -52,15 +57,23 @@ export default function Burger() {
                 setActive(item.key);
                 switch (item.label) {
                   case "Schedule":
+                    setOpenLeftSideBar(false);
                     break;
+
                   case "History":
+                    setOpenLeftSideBar(false);
                     break;
+
                   case "Language":
+                    setOpenLeftSideBar(false);
                     dispatch(setLangsOpen(true));
                     break;
+
                   case "Rules":
+                    setOpenLeftSideBar(false);
                     dispatch(setRulesOpen(true));
                     break;
+
                   default:
                     break;
                 }
@@ -72,7 +85,7 @@ export default function Burger() {
               }`}
             >
               {item.icon}
-              <span>{item.label}</span>
+              <span>{t(`navigation.${item.key}`)}</span>
             </button>
           ))}
         </div>

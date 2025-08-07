@@ -2,7 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/app/providers/StoreProvider";
 import AppHeightsProvider from "@/app/providers/AppHeightsProvider";
-import I18nProvider from "./providers/I18nProvider";
+import I18nProvider from "@/app/providers/I18nProvider";
+import GlobalApiProvider from "@/app/providers/GlobalApiProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,7 +27,9 @@ export default async function RootLayout({ children }) {
       >
         <StoreProvider>
           <I18nProvider>
-            <AppHeightsProvider>{children}</AppHeightsProvider>
+            <GlobalApiProvider>
+              <AppHeightsProvider>{children}</AppHeightsProvider>
+            </GlobalApiProvider>
           </I18nProvider>
         </StoreProvider>
       </body>

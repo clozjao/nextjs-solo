@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Match from "@/components/SportPage/MainComponents/Match/Match";
 import { matchesData } from "@/data/matchesData";
+import { useTranslation } from "react-i18next";
 
 export default function MatchList() {
+  const { t } = useTranslation();
   const [matchState, setMatchState] = useState("in-play");
   const matchArr = ["in-play", "early", "next-24-hours"];
   const filterMatch = matchesData.filter(
@@ -25,7 +27,7 @@ export default function MatchList() {
                   }`}
                   onClick={() => setMatchState(item)}
                 >
-                  {item}
+                  {t(`sports.${item}`)}
                 </button>
               );
             })}
