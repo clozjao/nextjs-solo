@@ -1,0 +1,56 @@
+{
+  "hello": "¡Hola, NextJs!",
+  "user": "Usuario NextJs",
+  "navigation": {
+    "schedule": "Calendario",
+    "language": "Idioma",
+    "rules": "Reglas"
+  },
+  "function": {
+    "search": "Buscar",
+    "betting-rules": "Reglas de apuestas"
+  },
+  "button": {
+    "view-all": "Ver todo",
+    "submit": "Realizar apuesta",
+    "cancel": "Cancelar",
+    "delete": "Eliminar todo"
+  },
+  "message": {
+    "success": "¡Éxito!",
+    "success-cart": "Añadido al carrito con éxito",
+    "success-place": "¡Gracias por tu pedido! Tu código QR estará listo en breve.",
+    "warning": "Advertencia",
+    "warning-cart": "La última apuesta será eliminada",
+    "cart-empty1": "Parece que tu boleto de apuestas está vacío.",
+    "cart-empty2": "¡Agrega algunas apuestas para comenzar!",
+    "cart-min-bet": "El monto de la apuesta debe ser al menos",
+    "order-code": "Código de pedido",
+    "place-bet-hint": "Por favor, vaya al agente para escanear el código QR y pagar para recibir tu boleto."
+  },
+  "sports": {
+    "soccer": "Fútbol",
+    "basket": "Baloncesto",
+    "tennis": "Tenis",
+    "baseball": "Béisbol",
+    "volley": "Voleibol",
+    "rugby": "Rugby",
+    "in-play": "En juego",
+    "next-24-hours": "Próximas 24 horas",
+    "early": "Anticipadas",
+    "upcoming": "Próximamente",
+    "reserve": "Reservado",
+    "no-bets": "Sin apuestas",
+    "no-events": "Sin eventos",
+    "home": "Equipo local",
+    "away": "Equipo de fuera",
+    "draw": "Empate"
+  },
+  "order": {
+    "order": "Pedido",
+    "single": "SIMPLE",
+    "min-bet": "Apuesta mínima",
+    "to-win": "Para ganar",
+    "total": "Total"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "hello": "Olá, NextJs!",
+  "user": "Usuário NextJs",
+  "navigation": {
+    "schedule": "Cronograma",
+    "language": "Idioma",
+    "rules": "Regras"
+  },
+  "function": {
+    "search": "Buscar",
+    "betting-rules": "Regras de apostas"
+  },
+  "button": {
+    "view-all": "Ver tudo",
+    "submit": "Fazer aposta",
+    "cancel": "Cancelar",
+    "delete": "Remover tudo"
+  },
+  "message": {
+    "success": "Sucesso!",
+    "success-cart": "Adicionado ao carrinho com sucesso",
+    "success-place": "Obrigado pelo seu pedido! Seu código QR estará disponível em breve.",
+    "warning": "Aviso",
+    "warning-cart": "A última aposta será removida",
+    "cart-empty1": "Parece que seu bilhete de apostas está vazio.",
+    "cart-empty2": "Adicione algumas apostas para começar!",
+    "cart-min-bet": "O valor da aposta deve ser de pelo menos",
+    "order-code": "Código do pedido",
+    "place-bet-hint": "Por favor, vaia ao agente para escanear o código QR e pagar para receber seu bilhete."
+  },
+  "sports": {
+    "soccer": "Futebol",
+    "basket": "Basquete",
+    "tennis": "Tênis",
+    "baseball": "Beisebol",
+    "volley": "Vôlei",
+    "rugby": "Rúgbi",
+    "in-play": "Ao vivo",
+    "next-24-hours": "Próximas 24 horas",
+    "early": "Antecipadas",
+    "upcoming": "Em breve",
+    "reserve": "Reservas",
+    "no-bets": "Sem apostas",
+    "no-events": "Sem eventos",
+    "home": "Time da casa",
+    "away": "time visitante",
+    "draw": "Empate"
+  },
+  "order": {
+    "order": "Pedido",
+    "single": "ÚNICA",
+    "min-bet": "Apuesta mínima",
+    "to-win": "Para ganhar",
+    "total": "Total"
+  }
+}

@@ -3,7 +3,6 @@
 import ClientComponent from "./ClientComponent";
 import { sports } from "@/data/sports";
 
-// ❗暫時用 any 避免 TS 報錯
 export default async function SportPage({ params }: { params: any }) {
   const { sport } = await params;
   return <ClientComponent sport={sport} />;

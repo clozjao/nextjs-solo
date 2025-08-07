@@ -1,25 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import type { qrCodeType } from "@/type";
 
-interface MatchState {
-  matches: [];
-  qrCode: string;
-  qrCodeOpen: boolean;
-}
-
-const initialState: MatchState = {
-  matches: [],
-  qrCode: '',
+const initialState: qrCodeType = {
+  qrCode: "",
   qrCodeOpen: false,
 };
 
 const matchSlice = createSlice({
-  name: 'match',
+  name: "match",
   initialState,
   reducers: {
-    setMatches: (state, action: PayloadAction<[]>) => {
-      state.matches = action.payload;
-    },
     setQrCode: (state, action: PayloadAction<string>) => {
       state.qrCode = action.payload;
     },
@@ -29,5 +20,5 @@ const matchSlice = createSlice({
   },
 });
 
-export const { setMatches, setQrCode, setQrCodeOpen } = matchSlice.actions;
+export const { setQrCode, setQrCodeOpen } = matchSlice.actions;
 export default matchSlice.reducer;

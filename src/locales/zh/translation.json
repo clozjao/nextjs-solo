@@ -1,0 +1,56 @@
+{
+  "hello": "你好，NextJs！",
+  "user": "NextJs 用户",
+  "navigation": {
+    "schedule": "赛程",
+    "language": "语言",
+    "rules": "规则"
+  },
+  "function": {
+    "search": "搜索",
+    "betting-rules": "投注规则"
+  },
+  "button": {
+    "view-all": "查看全部",
+    "submit": "下注",
+    "cancel": "取消",
+    "delete": "清空全部"
+  },
+  "message": {
+    "success": "成功！",
+    "success-cart": "成功加入购物车",
+    "success-place": "感谢您的订单！您的二维码即将生成。",
+    "warning": "警告",
+    "warning-cart": "最后一笔投注将被删除",
+    "cart-empty1": "您的投注单是空的，",
+    "cart-empty2": "添加一些投注开始吧！",
+    "cart-min-bet": "投注金额必须至少",
+    "order-code": "订单编号",
+    "place-bet-hint": "请前往代理扫描二维码并支付以接收您的票据。"
+  },
+  "sports": {
+    "soccer": "足球",
+    "basket": "篮球",
+    "tennis": "网球",
+    "baseball": "棒球",
+    "volley": "排球",
+    "rugby": "橄榄球",
+    "in-play": "进行中",
+    "next-24-hours": "未来 24 小时",
+    "early": "早盘",
+    "upcoming": "即将开始",
+    "reserve": "预定",
+    "no-bets": "没有盘口",
+    "no-events": "没有赛事",
+    "home": "主队",
+    "away": "客队",
+    "draw": "和局"
+  },
+  "order": {
+    "order": "订单",
+    "single": "单注",
+    "min-bet": "最小投注",
+    "to-win": "赢得",
+    "total": "总计"
+  }
+}

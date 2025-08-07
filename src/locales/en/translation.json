@@ -1,0 +1,56 @@
+{
+  "hello": "Hello, NextJs!",
+  "user": "NextJs user",
+  "navigation": {
+    "schedule": "Schedule",
+    "language": "Language",
+    "rules": "Rules"
+  },
+  "function": {
+    "search": "Search",
+    "betting-rules": "Betting Rules"
+  },
+  "button": {
+    "view-all": "View all",
+    "submit": "Place Bet",
+    "cancel": "Cancel",
+    "delete": "Remove all"
+  },
+  "message": {
+    "success": "Success!",
+    "success-cart": "Add to cart successfully",
+    "success-place": "Thanks for your order! Your QR code will be ready shortly.",
+    "warning": "Warning",
+    "warning-cart": "The last bet will be deleted",
+    "cart-empty1": "Looks like your bet slip is empty.",
+    "cart-empty2": "Add a few bets to get started!",
+    "cart-min-bet": "Bet Amount must be at least ",
+    "order-code": "Order code",
+    "place-bet-hint": "Please go to the agent to scan the QR code and pay to receive your ticket."
+  },
+  "sports": {
+    "soccer": "Soccer",
+    "basket": "Basket",
+    "tennis": "Tennis",
+    "baseball": "Baseball",
+    "volley": "Volley",
+    "rugby": "Rugby",
+    "in-play": "In play",
+    "next-24-hours": "Next 24 hours",
+    "early": "Early",
+    "upcoming": "Upcoming",
+    "reserve": "Reserve",
+    "no-bets": "No bets",
+    "no-events": "No events",
+    "home": "Home",
+    "away": "Away",
+    "draw": "Draw"
+  },
+  "order": {
+    "order": "Order",
+    "single": "SINGLE",
+    "min-bet": "Min Bet",
+    "to-win": "To win",
+    "total": "Total"
+  }
+}

@@ -1,17 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-interface orderType {
-  id: string;
-  matchName: string;
-  odds: string;
-  oddsType: string;
-}
+import type { orderType } from "@/type";
 
-interface OrderState {
-  orders: orderType[];
-}
-
-const initialState: OrderState = {
+const initialState: { orders: orderType[] } = {
   orders: [],
 };
 
@@ -22,8 +13,11 @@ const orderSlice = createSlice({
     setOrders: (state, action: PayloadAction<orderType[]>) => {
       state.orders = action.payload;
     },
+    cleanOrders: (state) => {
+      state.orders = [];
+    },
   },
 });
 
-export const { setOrders } = orderSlice.actions;
+export const { setOrders, cleanOrders } = orderSlice.actions;
 export default orderSlice.reducer;
