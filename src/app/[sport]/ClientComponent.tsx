@@ -104,6 +104,7 @@ export default function ClientComponent({ sport }: { sport: string }) {
         <div
           className={`scrollbar-hide relative col-span-6 h-full overflow-y-auto pt-5 sm:col-span-8 xl:col-span-6`}
           ref={scrollRef}
+          id="scrollDiv"
         >
           <Main />
         </div>

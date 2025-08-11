@@ -44,7 +44,7 @@ export default function UpComing() {
             </div>
             <div className="flex items-center justify-center w-full">
               <div
-                className="font-body1 flex items-center justify-center gap-2 rounded-sm border-2 border-neutrals-300 px-3 py-2 sm:w-full max-w-[300px]"
+                className="font-body1 flex items-center justify-center gap-2 rounded-sm border-[1px] border-neutrals-300 px-3 py-2 sm:w-full max-w-[300px]"
                 onClick={(e) => {
                   e.stopPropagation();
                   setNotifyState(!notifyState);

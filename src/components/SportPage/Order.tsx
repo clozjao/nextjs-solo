@@ -219,7 +219,7 @@ export default function Order({
         </button>
         {+inputValue < minBets && (
           <div className="absolute top-0 flex w-full justify-center">
-            <div className="right-0 rounded-[3px] border-2 border-[rgb(159,31,37)] bg-white px-4 text-xs text-[rgb(159,31,37)]">
+            <div className="right-0 rounded-[3px] border-[1px] border-[rgb(159,31,37)] bg-white px-4 text-xs text-[rgb(159,31,37)]">
               {t(`message.cart-min-bet`)} {minBets}
             </div>
           </div>

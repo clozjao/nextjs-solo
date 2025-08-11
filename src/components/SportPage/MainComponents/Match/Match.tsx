@@ -20,7 +20,7 @@ export default function Match({ match }: { match: Match }) {
           {match.event_name}
         </div>
         <div className="overflow-hidden">
-          <div className="flex divide-x-1 divide-[#b1b1b1] rounded-t-lg border-1 border-[#b1b1b1]">
+          <div className="flex divide-x-[1px] divide-[#b1b1b1] rounded-t-lg border-[1px] border-[#b1b1b1]">
             <div className="flex h-[142px] flex-1 items-center justify-center sm:h-[226px]">
               <Next className="w-[200px]" />
             </div>
@@ -28,7 +28,7 @@ export default function Match({ match }: { match: Match }) {
               <Next className="w-[200px]" />
             </div>
           </div>
-          <div className="flex divide-x-1 divide-[#b1b1b1] rounded-b-lg border-x-1 border-b-1 border-[#b1b1b1]">
+          <div className="flex divide-x-[1px] divide-[#b1b1b1] rounded-b-lg border-x-[1px] border-b-[1px] border-[#b1b1b1]">
             {match.product_info.product.length > 0 ? (
               match.product_info.product.map((item, index, arr) => {
                 return (
