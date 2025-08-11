@@ -50,9 +50,9 @@ export default function ClientComponent({ sport }: { sport: string }) {
   }, [openOrder]);
 
   return (
-    <div className="relative h-[var(--app-height)] bg-neutral-100 top-0">
+    <div className="relative h-[var(--app-height)] bg-neutral-100">
       <div
-        className={`absolute top-0 flex w-full items-center justify-between bg-neutral-200 z-[11] px-4 transition-transform duration-300 sm:px-16 h-[106px] xl:h-[124px] ${
+        className={`absolute top-0 flex w-full items-center justify-between bg-neutral-200 z-[11] px-4 transition-transform duration-200 sm:px-16 h-[106px] xl:h-[124px] ${
           scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
         } `}
       >
@@ -109,11 +109,7 @@ export default function ClientComponent({ sport }: { sport: string }) {
         </div>
         <div
           ref={orderRef}
-          className={`scrollbar-hide absolute top-0 right-0 z-[16] hidden ${
-            scrollDirection === "down"
-              ? "h-[var(--app-height)]"
-              : "h-[var(--app-height)] xl:h-[calc(var(--app-height)-144px)]"
-          } transition-all w-[80%] touch-none duration-450 sm:w-[70%] xl:static xl:col-span-4 xl:block xl:w-full xl:py-5`}
+          className={`scrollbar-hide absolute top-0 right-0 z-[16] hidden h-[var(--app-height)] xl:h-[calc(var(--app-height)-144px)] transition-all w-[80%] touch-none duration-450 sm:w-[70%] xl:static xl:col-span-4 xl:block xl:w-full xl:py-5`}
         >
           <Order setOpenOrder={setOpenOrder} />
         </div>

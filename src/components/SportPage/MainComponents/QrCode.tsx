@@ -4,14 +4,15 @@ import type { RootState, AppDispatch } from "@/redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { setQrCode } from "@/redux/reducer/matchReducer";
 import Close from "@/assets/delete.svg";
+import QRCode from "qrcode";
 import { useTranslation } from "react-i18next";
-// import QRCode from 'qrcode';
+import Image from "next/image";
 
 export default function QrCode() {
   const { t } = useTranslation();
   const [openQrCode, setOpenQrCode] = useState(false);
   const [show, setShow] = useState(false);
-  // const [qrSrc, setQrSrc] = useState('');
+  const [qrSrc, setQrSrc] = useState("");
   const dispatch = useDispatch<AppDispatch>();
   const { qrCode } = useSelector((state: RootState) => state.matchReducer);
 
@@ -26,9 +27,13 @@ export default function QrCode() {
     if (qrCode) {
       setShow(true);
       setOpenQrCode(true);
+      const qrCodeData = async () => {
+        const qr = await QRCode.toDataURL(qrCode);
+        setQrSrc(qr);
+      };
+      qrCodeData();
     } else {
       setOpenQrCode(false);
-      // setQrSrc(qrCode);
       // 等動畫完再卸載
       const timer = setTimeout(() => {
         setShow(false);
@@ -43,10 +48,14 @@ export default function QrCode() {
     <>
       {show ? (
         <div
-          className={`fixed top-0 right-0 z-[25] flex h-screen w-screen items-center justify-center`}
+          className={`fixed top-0 right-0 z-[17] flex h-screen w-screen items-center justify-center`}
         >
-          <Mask setFirstState={setOpenQrCode} firstState={openQrCode} />
-          <div className="absolute z-[30] flex w-[300px] flex-col items-center justify-center gap-8 rounded-[20px] bg-white p-7">
+          <Mask
+            setFirstState={setOpenQrCode}
+            firstState={openQrCode}
+            qrCode={true}
+          />
+          <div className="absolute z-[16] flex w-[300px] flex-col items-center justify-center gap-8 rounded-[20px] bg-white p-7">
             <div className="w-full text-end">
               <Close
                 className="inline-block h-6 w-6"
@@ -57,11 +66,21 @@ export default function QrCode() {
                 }}
               />
             </div>
-            <div className="bg-neutrals-300 h-[200px] w-[200px] rounded-lg"></div>
+            <Image
+              height={200}
+              width={200}
+              alt={"qrCode"}
+              src={qrSrc}
+              className="rounded-lg"
+            />
             <div className="flex flex-col items-center gap-3">
-              <div className="font-body1b">{t("message.order-code")}</div>
+              <div className="font-body1b">
+                {t(`message.order-code`)}
+                {` : `}
+                {qrCode}
+              </div>
               <div className="font-body text-center">
-                {t("message.place-bet-hint")}
+                {t(`message.place-bet-hint`)}
               </div>
             </div>
           </div>

@@ -1,11 +1,17 @@
 import Orders from "@/assets/orders.svg";
 import Remove from "@/assets/remove.svg";
-import Delete from "@/assets/delete.svg";
+// import Delete from "@/assets/delete.svg?react";
 import type { AppDispatch, RootState } from "@/redux/store";
+import type { orderType, ordersPayloadType } from "@/type";
 import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-
 import { setQrCode } from "@/redux/reducer/matchReducer";
+import { useQuery } from "@tanstack/react-query";
+import { apiMinBets } from "@/api/REST/minBets";
+import { useEffect, useState } from "react";
+import { cleanOrders } from "@/redux/reducer/orderReducer";
+import { apiGenerateQrCode } from "@/api/REST/generateQrCode";
+import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 
 export default function Order({
   setOpenOrder,
@@ -13,8 +19,50 @@ export default function Order({
   setOpenOrder: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { t } = useTranslation();
+  const [minBets, setMinBets] = useState<number>(0);
+  const [inputValue, setInputValue] = useState<string>("");
+  const [debouncedValue, setDebouncedValue] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();
   const orders = useSelector((state: RootState) => state.orderReducer.orders);
+  const [payloadState, setPayloadState] = useState<ordersPayloadType | null>(
+    null
+  );
+
+  const { data } = useQuery({
+    queryKey: ["repoData", "minBets"],
+    queryFn: () => apiMinBets().then((res) => res.data),
+    staleTime: Infinity,
+    retry: false,
+  });
+
+  useEffect(() => {
+    if (!data) return;
+    setMinBets(data.min_bet);
+    setInputValue(data.min_bet.toString());
+  }, [data]);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(inputValue);
+    }, 500); // 延遲 500 毫秒後才更新
+
+    return () => {
+      clearTimeout(handler); // 清除上一次的 timeout
+    };
+  }, [inputValue]);
+
+  const { data: qrCodeData } = useQuery({
+    queryKey: ["repoData", "qrCode", payloadState],
+    queryFn: () => apiGenerateQrCode(payloadState).then((res) => res.data),
+    staleTime: Infinity,
+    retry: false,
+    enabled: !!payloadState,
+  });
+
+  useEffect(() => {
+    if (!qrCodeData) return;
+    dispatch(setQrCode(qrCodeData.order_code));
+  }, [qrCodeData, dispatch]);
 
   return (
     <div className="h-full space-y-6 bg-white p-4 xl:rounded-xl">
@@ -22,7 +70,7 @@ export default function Order({
         <div className="flex items-center justify-between px-3 py-4 xl:px-0">
           <div className="flex items-center gap-2">
             <Orders className="h-5 w-5" />
-            <h2 className="text-base font-bold">{t("order.order")}</h2>
+            <h2 className="text-base font-bold">{t(`order.order`)}</h2>
           </div>
           {/* <span className="font-body1 text-neutrals-900">Balance 0</span> */}
         </div>
@@ -32,61 +80,92 @@ export default function Order({
 
       <div className="flex items-center justify-between font-semibold">
         <div className="font-body1b flex items-center gap-2">
-          {t("order.single")}
+          {t(`order.single`)}
           <span className="bg-neutrals-900 font-body2 inline-block rounded-[100px] px-[7px] py-[1px] text-center text-white">
             {orders.length}
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div
+          className="flex items-center gap-2"
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(cleanOrders());
+          }}
+        >
           <Remove className="h-5 w-5" />
           <button className="font-caption text-neutrals-900">
-            {t("button.delete")}
+            {t(`button.delete`)}
           </button>
         </div>
       </div>
 
-      <div className="h-[calc(100%-220px)] space-y-4 overflow-y-auto">
-        {orders.map((item: any) => (
-          <div key={item.id} className="space-y-4 rounded-lg border p-3">
-            <div className="flex justify-between">
-              <span className="font-body1b">{`${item.oddsType} ${item.odds}`}</span>
-              <button className="rounded-[100px] border-1 p-1">
+      <div className="h-[calc(100%-230px)] space-y-4 overflow-auto">
+        {orders.length > 0 ? (
+          orders.map((item: orderType) => (
+            <div
+              key={item.event_id}
+              className="space-y-4 rounded-lg border p-3"
+            >
+              <div className="flex justify-between">
+                <span className="font-body1b">{item.product_name}</span>
+                {/* <button className="rounded-[100px] border-1 p-1">
                 <Delete className="h-3 w-3" />
-              </button>
-            </div>
-            <div className="space-y-2">
-              <div className="font-body2">{item.matchName}</div>
-              <div className="font-caption text-neutrals-500">
-                Premier League
+              </button> */}
               </div>
-            </div>
+              <div className="space-y-2">
+                <div className="font-body2">{item.event_name}</div>
+                <div className="font-caption text-neutrals-500">
+                  {item.season_name}
+                </div>
+              </div>
 
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs">
-                <span>{t("order.min-bet")}</span>
-                <span>0</span>
+              <div className="space-y-2">
+                <div className="flex justify-between text-xs">
+                  <span>{t(`order.min-bet`)}</span>
+                  <span>{minBets}</span>
+                </div>
+                <div className="flex justify-between text-xs">
+                  <span>{t(`order.to-win`)}</span>
+                  <span>
+                    {Math.round((+inputValue * item.odds - +inputValue) * 100) /
+                      100}
+                  </span>
+                </div>
               </div>
-              <div className="flex justify-between text-xs">
-                <span>{t("order.to-win")}</span>
-                <span>0</span>
-              </div>
-            </div>
-            <input
-              type="text"
-              placeholder="Enter"
-              className="bg-neutrals-200 font-body2 custom-placeholder w-full rounded px-4 py-3"
-            />
+              <input
+                type="number"
+                min={0}
+                max={100000}
+                inputMode="decimal"
+                placeholder="Enter"
+                value={inputValue}
+                className="bg-neutrals-200 font-body2 custom-placeholder w-full rounded px-4 py-3"
+                onChange={(e) => {
+                  e.stopPropagation();
+                  const value = e.target.value;
+                  // 允許清空或符合數字格式
+                  if (value === "" || /^\d*\.?\d*$/.test(value)) {
+                    setInputValue(value); // 存為字串
+                  }
+                }}
+              />
 
-            <div className="font-body2 flex items-center justify-between">
-              Over/Under {t("order.total")}{" "}
-              <span className="font-h5">1.9(EU)</span>
+              <div className="font-body2 flex items-center justify-between">
+                {item.market_name.toLowerCase()} {t(`order.total`)}
+                <span className="font-h5">{item.odds}</span>
+              </div>
             </div>
+          ))
+        ) : (
+          <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-center">
+            <span>{t(`message.cart-empty1`)}</span>
+            <span>{t(`message.cart-empty2`)}</span>
           </div>
-        ))}
+        )}
       </div>
-      <div>
-        {/* <div className="flex items-center gap-2 text-xs">
+      <div className="relative">
+        {/* <div className="mb-4 flex items-center gap-2 text-xs">
           <input type="checkbox" id="accept" className="peer hidden" />
           <label
             htmlFor="accept"
@@ -98,15 +177,53 @@ export default function Order({
         </div> */}
 
         <button
-          className="font-body1 my-4 w-full rounded bg-black py-2 text-white hover:opacity-90"
+          className={`font-body1 my-5 w-full rounded ${
+            +inputValue >= minBets && orders.length > 0
+              ? "bg-black"
+              : "bg-[rgb(196,196,196)]"
+          } py-2 text-white hover:opacity-90`}
           onClick={(e) => {
             e.stopPropagation();
-            dispatch(setQrCode("qrCodeTest"));
+
+            if (!debouncedValue || !orders.length || +debouncedValue < minBets)
+              return;
+            const payload = {
+              payload: [
+                {
+                  quantity: debouncedValue,
+                  selections: [
+                    {
+                      event_id: orders[0].event_id,
+                      market_id: orders[0].market_id,
+                      product_id: orders[0].product_id,
+                    },
+                  ],
+                },
+              ],
+              token: process.env.NEXT_PUBLIC_DEFAULT_TOKEN,
+            };
+            setPayloadState(payload);
             setOpenOrder(false);
+            dispatch(cleanOrders());
+            Swal.fire({
+              icon: "success",
+              title: t(`message.success`),
+              text: t(`message.success-place`),
+              theme: "dark",
+              timer: 1500,
+              showConfirmButton: false,
+            });
           }}
         >
-          {t("button.submit")}
+          {t(`button.submit`)}
         </button>
+        {+inputValue < minBets && (
+          <div className="absolute top-0 flex w-full justify-center">
+            <div className="right-0 rounded-[3px] border-2 border-[rgb(159,31,37)] bg-white px-4 text-xs text-[rgb(159,31,37)]">
+              {t(`message.cart-min-bet`)} {minBets}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

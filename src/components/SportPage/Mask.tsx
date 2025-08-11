@@ -5,11 +5,13 @@ export default function Mask({
   secondState = null,
   setFirstState,
   setSecondState = null,
+  qrCode = false,
 }: {
   firstState: boolean;
   secondState?: boolean | null;
   setFirstState: React.Dispatch<React.SetStateAction<boolean>>;
   setSecondState?: React.Dispatch<React.SetStateAction<boolean>> | null;
+  qrCode?: boolean;
 }) {
   const [show, setShow] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
@@ -36,7 +38,9 @@ export default function Mask({
     <>
       {show && (
         <div
-          className={`absolute top-0 left-0 z-[15] h-full w-screen bg-black transition-opacity duration-300 ${
+          className={`absolute top-0 left-0 ${
+            qrCode ? "z-[15]" : "z-[12]"
+          } h-full w-screen bg-black transition-opacity duration-300 ${
             fadeIn ? "opacity-50" : "opacity-0"
           }`}
           onClick={(e) => {

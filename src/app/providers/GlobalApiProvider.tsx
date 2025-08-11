@@ -7,8 +7,10 @@ import { rulesQuery, endpoint } from "@/api/GQL";
 import { GraphQLClient } from "graphql-request";
 import { setRules } from "@/redux/reducer/globalSettingReducer";
 import type { RulesResponse } from "@/type";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export default function GlobalApiProvider({ children }) {
+  const queryClient = new QueryClient();
   const dispatch = useDispatch();
   const language = useSelector(
     (state: RootState) => state.globalSettingReducer.language
@@ -31,5 +33,7 @@ export default function GlobalApiProvider({ children }) {
     fetchRules();
   }, [language, dispatch]);
 
-  return <>{children}</>;
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
 }
